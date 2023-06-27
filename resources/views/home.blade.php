@@ -54,8 +54,8 @@
                 @foreach($products as $product)
                     <div class="col-lg-4 col-md-6 col-sm-12 p-2 justify-content-center">
                         <div class="card">
-                            <a href="#">
-                                <img src="{{ $product->img }}" class="card-img-top" alt="product_image">
+                            <a href="{{ route('products.show', ['id' => $product->id]) }}">
+                                <img src="{{ asset($product->img) }}" class="card-img-top" alt="product_image">
                             </a>
                             <div class="card-body">
                                 <h5 class="card-title text-bold">{{ $product->name }}</h5>
