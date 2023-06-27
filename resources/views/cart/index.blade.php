@@ -93,49 +93,5 @@
                 </div>
             </div>
         </section>
-        <h2>Shopping Cart</h2>
-
-        @if ($cartItems->isEmpty())
-            <p>Your cart is empty.</p>
-        @else
-            <table>
-                <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Subtotal</th>
-                    <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach ($cartItems as $cartItem)
-                    <tr>
-                        <td>{{ $cartItem->product->name }}</td>
-                        <td>${{ $cartItem->product->price }}</td>
-                        <td>
-                            <form action="{{ route('cart.updateQuantity', ['id' => $cartItem->id]) }}" method="POST">
-                                @csrf
-                                <input type="number" name="quantity" value="{{ $cartItem->quantity }}">
-                                <button type="submit">Update</button>
-                            </form>
-                        </td>
-                        <td>${{ $cartItem->product->price * $cartItem->quantity }}</td>
-                        <td>
-                            <form action="{{ route('cart.removeFromCart', ['id' => $cartItem->id]) }}" method="POST">
-                                @csrf
-                                <button type="submit">Remove</button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-                <tr>
-                    <td colspan="3">Subtotal:</td>
-                    <td>${{ $subtotal }}</td>
-                </tr>
-                </tbody>
-            </table>
-
-        @endif
     </div>
 @endsection
