@@ -11,7 +11,7 @@
 
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('css/fontawesome.min.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -37,7 +37,7 @@
                 <ul class="navbar-nav align-items-center p-2">
                     <li><a href="{{ url('/') }}" class="nav-link px-2 text-white">Home</a></li>
                     <li><a href="{{ route('products') }}" class="nav-link px-2 text-white">Products</a></li>
-                    <li><a href="{{ route('products') }}" class="nav-link px-2 text-white">Cart</a></li>
+                    <li><a href="{{ route('cart') }}" class="nav-link px-2 text-white">Cart</a></li>
                 </ul>
 
                 <ul class="navbar-nav ms-auto p-2">

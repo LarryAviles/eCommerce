@@ -9,19 +9,15 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
         return view('products.index', ['products' => Product::all()]);
     }
 
-    public function view()
+    public function show($id)
     {
-
+        $product = Product::findOrFail($id);
+        return view('products.show', compact('product'));
     }
 
     public function filter(Request $request)
@@ -47,10 +43,10 @@ class ProductController extends Controller
 
     public function addToCart(Request $request, $id)
     {
+
         $product = Product::findOrFail($id);
         $user = Auth::user();
-        dd($product);
-        $cartItem = CartItem::where('product_id', $product->id)->where('user_id', $user->id)->first();
+        $cartItem = CartItem::where('product_id', $product['id'])->where('user_id', $user->id)->first();
 
         if ($cartItem) {
             $cartItem->update(['quantity' => $cartItem->quantity + 1]);
@@ -62,13 +58,5 @@ class ProductController extends Controller
         }
 
         return redirect()->route('cart')->with('success', 'Product added to cart.');
-    }
-
-    public function removeFromCart($id)
-    {
-        $cartItem = CartItem::findOrFail($id);
-        $cartItem->delete();
-
-        return redirect()->route('cart')->with('success', 'Product removed from cart.');
     }
 }

@@ -55,13 +55,16 @@
                     <div class="col-lg-4 col-md-6 col-sm-12 p-2 justify-content-center">
                         <div class="card">
                             <a href="#">
-                                <img src="{{ $product['img'] }}" class="card-img-top" alt="product_image">
+                                <img src="{{ $product->img }}" class="card-img-top" alt="product_image">
                             </a>
                             <div class="card-body">
-                                <h5 class="card-title" style="font-weight: bold">{{ $product['name'] }}</h5>
-                                <p class="card-text">${{ $product['price'] }}</p>
-                                <p class="card-text">Category: {{ $product['category'] }}</p>
-                                <a href="#" class="btn btn-primary">Add to the Cart</a>
+                                <h5 class="card-title text-bold">{{ $product->name }}</h5>
+                                <p class="card-text">${{ $product->price }}</p>
+                                <p class="card-text">Category: {{ $product->category }}</p>
+                                <form action="{{ route('products.addToCart', ['id' => $product->id]) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-success">Add to Cart</button>
+                                </form>
                             </div>
                         </div>
                     </div>
